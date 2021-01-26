@@ -1,9 +1,6 @@
 package br.com.zup.casadocodigo.autor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -17,10 +14,14 @@ public class DadosPessoais {
 
     @Email
     @NotBlank
+    @Column(unique = true)
     private String email;
 
     @NotBlank
     private String nome;
+
+    public DadosPessoais() {
+    }
 
     public DadosPessoais(@Email @NotBlank String email, @NotBlank String nome) {
 

@@ -22,6 +22,9 @@ public class Autor {
     @NotNull
     private LocalDateTime instante = LocalDateTime.now();
 
+    public Autor() {
+    }
+
     public Autor(String descricao, DadosPessoais dadosPessoais) {
         if(descricao==null || descricao.trim().equals("") || descricao.length() > 400){
             throw new IllegalArgumentException("A descrição é obrigatória e deve ter menos de 400 caracteres.");
