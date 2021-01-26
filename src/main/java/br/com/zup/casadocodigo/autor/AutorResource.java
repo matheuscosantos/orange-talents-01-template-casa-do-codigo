@@ -1,11 +1,13 @@
 package br.com.zup.casadocodigo.autor;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.Validator;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/autores")
@@ -13,13 +15,27 @@ public class AutorResource {
 
     AutorRepository autorRepository;
 
+    @Autowired
+    private ProibeEmailDuplicadoValidator proibeEmailDuplicadoValidator;
+
     AutorResource(AutorRepository autorRepository){
         this.autorRepository = autorRepository;
     }
 
+    @InitBinder
+    public void init(WebDataBinder binder){
+        binder.addValidators(proibeEmailDuplicadoValidator);
+    }
     @PostMapping
-    public Autor cria(@RequestBody @Valid AutorForm autorForm){
+    public ResponseEntity cria(@RequestBody @Valid AutorForm autorForm){
         Autor autor = autorForm.toModel();
-        return autorRepository.save(autor);
+
+        Optional<Autor> autorOptional = autorRepository.findByDadosPessoaisEmail(autorForm.getEmail());
+        if (autorOptional.isEmpty()){
+            autorRepository.save(autor);
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
