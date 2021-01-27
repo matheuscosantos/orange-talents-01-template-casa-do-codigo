@@ -1,5 +1,8 @@
 package br.com.zup.casadocodigo.autor;
 
+import br.com.zup.casadocodigo.categoria.Categoria;
+import br.com.zup.casadocodigo.compartilhado.UniqueValue;
+
 import javax.annotation.Resource;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +15,7 @@ public class AutorForm {
 
     @NotBlank
     @Email
+    @UniqueValue(domainClass = DadosPessoais.class, fieldName = "email")
     private String email;
 
     @NotBlank
