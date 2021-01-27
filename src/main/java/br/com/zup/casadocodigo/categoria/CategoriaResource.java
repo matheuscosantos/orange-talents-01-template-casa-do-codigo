@@ -14,14 +14,6 @@ public class CategoriaResource {
 
     CategoriaRepository categoriaRepository;
 
-    @Autowired
-    private ProibeNomeDuplicadoValidator proibeNomeDuplicadoValidator;
-
-    @InitBinder
-    public void init(WebDataBinder binder){
-        binder.addValidators(proibeNomeDuplicadoValidator);
-    }
-
     public CategoriaResource(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
     }

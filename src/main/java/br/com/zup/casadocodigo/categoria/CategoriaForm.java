@@ -1,12 +1,15 @@
 package br.com.zup.casadocodigo.categoria;
 
+import br.com.zup.casadocodigo.autor.Autor;
+import br.com.zup.casadocodigo.compartilhado.UniqueValue;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 public class CategoriaForm {
 
     @NotBlank
-    @Column(unique = true)
+    @UniqueValue(domainClass = Categoria.class, fieldName = "nome")
     private String nome;
 
     public String getNome() {

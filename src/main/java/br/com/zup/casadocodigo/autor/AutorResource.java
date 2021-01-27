@@ -13,19 +13,9 @@ import java.util.Optional;
 @RequestMapping(value = "/autores")
 public class AutorResource {
 
+    @Autowired
     AutorRepository autorRepository;
 
-    @Autowired
-    private ProibeEmailDuplicadoValidator proibeEmailDuplicadoValidator;
-
-    AutorResource(AutorRepository autorRepository){
-        this.autorRepository = autorRepository;
-    }
-
-    @InitBinder
-    public void init(WebDataBinder binder){
-        binder.addValidators(proibeEmailDuplicadoValidator);
-    }
     @PostMapping
     public ResponseEntity cria(@RequestBody @Valid AutorForm autorForm){
         Autor autor = autorForm.toModel();
