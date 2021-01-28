@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-// Carga intrínseca 2
+// Carga intrínseca 12
 @Entity
 public class Livro {
     @Id
@@ -53,7 +53,7 @@ public class Livro {
     @Deprecated
     public Livro() {
     }
-
+//  2
     public Livro(@NotEmpty String titulo,
                  @NotEmpty @Size(max = 500) String resumo,
                  String sumario,
@@ -63,35 +63,35 @@ public class Livro {
                  @Future LocalDate dataDePublicacao,
                  @NotNull Categoria categoria,
                  @NotNull Autor autor) {
-
+//  1
         if(titulo == null || titulo.trim().equals("")){
             throw new IllegalArgumentException("O título é obrigatório.");
         }
-
+//  1
         if(resumo == null || resumo.trim().equals("") || resumo.length() > 500){
             throw new IllegalArgumentException("O resumo é obrigatório e deve ter no máximo 500 caracteres.");
         }
-
+//  1
         if(preco == null || preco.longValue() < 20){
             throw new IllegalArgumentException("O preço é obrigatório e deve ser no minímo R$20,00");
         }
-
+//  1
         if(numeroDePaginas == null || numeroDePaginas < 100){
             throw new IllegalArgumentException("O número de páginas é obrigatório e deve ter no mínimo 100 páginas");
         }
-
+//  1
         if(isbn == null || isbn.trim().equals("")){
             throw new IllegalArgumentException("O ISBN é obrigatório");
         }
-
+//  1
         if(dataDePublicacao.isBefore(LocalDate.now())){
             throw new IllegalArgumentException("A data de publicação deve ser no futuro");
         }
-
+//  1
         if(categoria == null){
             throw new IllegalArgumentException("A categoria não deve ser nula");
         }
-
+//  1
         if(autor == null){
             throw new IllegalArgumentException("O autor não deve ser nulo.");
         }
@@ -105,44 +105,16 @@ public class Livro {
         this.categoria = categoria;
         this.autor = autor;
     }
-
-    public void setId(Long id) {
-        this.id = id;
+    
+    public Long getId() {
+        return id;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setResumo(String resumo) {
-        this.resumo = resumo;
-    }
-
-    public void setSumario(String sumario) {
-        this.sumario = sumario;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
-    public void setNumeroDePaginas(Integer numeroDePaginas) {
-        this.numeroDePaginas = numeroDePaginas;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public void setDataDePublicacao(LocalDate dataDePublicacao) {
-        this.dataDePublicacao = dataDePublicacao;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
+    public String getResumo() {
+        return resumo;
     }
 }
