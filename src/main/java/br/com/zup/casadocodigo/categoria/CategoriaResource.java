@@ -10,17 +10,19 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/categorias")
+// Carga intrínseca 4
 public class CategoriaResource {
 
+//    1
+    @Autowired
     CategoriaRepository categoriaRepository;
 
-    public CategoriaResource(CategoriaRepository categoriaRepository) {
-        this.categoriaRepository = categoriaRepository;
-    }
-
+//    1
     @PostMapping
     public ResponseEntity cria(@RequestBody @Valid CategoriaForm categoriaForm){
+//        1
         Optional<Categoria> possivelCategoria = categoriaRepository.findByNome(categoriaForm.getNome());
+//        1
         if(possivelCategoria.isEmpty()){
             categoriaRepository.save(categoriaForm.toModel());
             return ResponseEntity.ok().build();

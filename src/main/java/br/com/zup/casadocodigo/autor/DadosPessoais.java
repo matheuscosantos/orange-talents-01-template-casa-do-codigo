@@ -3,10 +3,9 @@ package br.com.zup.casadocodigo.autor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
+// Carga intrínseca 2
 public class DadosPessoais {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -20,19 +19,20 @@ public class DadosPessoais {
     @NotBlank
     private String nome;
 
+    @Deprecated
     public DadosPessoais() {
     }
 
     public DadosPessoais(@Email @NotBlank String email, @NotBlank String nome) {
 
+//      1
         if(email==null || email.trim().equals("")){
             throw new IllegalArgumentException("O email é obrigatório.");
         }
-
+//      1
         if(nome==null || nome.trim().equals("")){
             throw new IllegalArgumentException("O nome é obrigatório.");
         }
-
         this.email = email;
         this.nome = nome;
     }
