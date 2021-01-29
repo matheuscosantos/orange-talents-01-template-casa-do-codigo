@@ -1,6 +1,5 @@
 package br.com.zup.casadocodigo.autor;
 
-import br.com.zup.casadocodigo.categoria.Categoria;
 import br.com.zup.casadocodigo.compartilhado.UniqueValue;
 
 import javax.annotation.Resource;
