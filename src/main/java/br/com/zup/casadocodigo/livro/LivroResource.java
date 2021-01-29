@@ -11,8 +11,9 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
-// Carga intrínseca 5
+// Carga intrínseca 8
 @RestController
 @RequestMapping(value = "/livros")
 public class LivroResource {
@@ -26,7 +27,7 @@ public class LivroResource {
     @PostMapping
     @Transactional
 //    1
-    public ResponseEntity cria(@RequestBody @Valid LivroForm livroForm){
+    public ResponseEntity cria(@RequestBody @Valid LivroForm livroForm ){
 //    1
         Livro livro = livroForm.toModel(em);
         em.persist(livro);
@@ -35,13 +36,27 @@ public class LivroResource {
 
     @GetMapping
 //    1
-    public Page<LivroResponse> listaTodos(Pageable paginacao){
+    public Page<LivroResponse> detalhaItens(Pageable paginacao){
 //        1
-        Page<Livro> livros;
-//        1
-        Page<Livro> livrosEncontrados = livroRepository.findAll(paginacao);
+        Page<Livro> livrosEncontrados;
+
+        livrosEncontrados = livroRepository.findAll(paginacao);
 //        1
         return LivroResponse.converter(livrosEncontrados);
+
     }
+
+    @GetMapping("/{id}")
+//    1
+    public ResponseEntity<LivroResponse> detalhaItem(@PathVariable Long id){
+//        1
+        Optional<Livro> possivelLivro = livroRepository.findById(id);
+        if(possivelLivro.isPresent()){
+//            1
+            return ResponseEntity.ok(new LivroResponse(possivelLivro.get()));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
 

@@ -37,4 +37,7 @@ public class Autor {
         this.dadosPessoais = dadosPessoais;
     }
 
+    public DadosPessoais getDadosPessoais() {
+        return dadosPessoais;
+    }
 }
