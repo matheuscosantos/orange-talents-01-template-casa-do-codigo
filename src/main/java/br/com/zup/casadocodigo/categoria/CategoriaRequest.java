@@ -5,7 +5,7 @@ import br.com.zup.casadocodigo.compartilhado.UniqueValue;
 import javax.validation.constraints.NotBlank;
 
 //      Carga cognitiva 3
-public class CategoriaForm {
+public class CategoriaRequest {
 
 //    1
     @NotBlank

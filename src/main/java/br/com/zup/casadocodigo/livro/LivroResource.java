@@ -26,7 +26,7 @@ public class LivroResource {
     @PostMapping
     @Transactional
 //    1
-    public ResponseEntity cria(@RequestBody @Valid LivroForm livroForm ){
+    public ResponseEntity cria(@RequestBody @Valid LivroRequest livroForm ){
 //    1
         Livro livro = livroForm.toModel(em);
         em.persist(livro);
