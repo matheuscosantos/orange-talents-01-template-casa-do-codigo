@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 // Carga intrínseca 5
-public class LivroForm {
+public class LivroRequest {
 
     @NotEmpty
     @UniqueValue(domainClass = Livro.class, fieldName = "titulo")

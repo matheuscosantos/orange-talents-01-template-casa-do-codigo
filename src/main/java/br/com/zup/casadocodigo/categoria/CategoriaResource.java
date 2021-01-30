@@ -2,7 +2,6 @@ package br.com.zup.casadocodigo.categoria;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,7 +18,7 @@ public class CategoriaResource {
 
 //    1
     @PostMapping
-    public ResponseEntity cria(@RequestBody @Valid CategoriaForm categoriaForm){
+    public ResponseEntity cria(@RequestBody @Valid CategoriaRequest categoriaForm){
 //        1
         Optional<Categoria> possivelCategoria = categoriaRepository.findByNome(categoriaForm.getNome());
 //        1

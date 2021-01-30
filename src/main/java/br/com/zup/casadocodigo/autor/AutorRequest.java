@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 @Resource
 // Carga intrínseca 2
-public class AutorForm {
+public class AutorRequest {
     @NotBlank
     private String nome;
 

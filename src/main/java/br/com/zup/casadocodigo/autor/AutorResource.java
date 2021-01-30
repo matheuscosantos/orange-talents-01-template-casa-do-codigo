@@ -17,7 +17,7 @@ public class AutorResource {
 
 //        1
     @PostMapping
-    public ResponseEntity cria(@RequestBody @Valid AutorForm autorForm){
+    public ResponseEntity cria(@RequestBody @Valid AutorRequest autorForm){
 //        1
         Autor autor = autorForm.toModel();
 //        1
